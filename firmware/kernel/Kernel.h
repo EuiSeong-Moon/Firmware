@@ -3,6 +3,7 @@
 
 #include "task.h"
 #include "event.h"
+#include "msg.h"
 
 void Kernel_yield (void);
 void Kernel_start (void);

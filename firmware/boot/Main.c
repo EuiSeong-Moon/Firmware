@@ -50,36 +50,37 @@ void User_task0 (void) {
     while (true) {
         KernelEventFlag_t handle_event = Kernel_wait_events(KernelEventFlag_UartIn | KernelEventFlag_CmdOut);
         switch (handle_event) {
-        case KernelEventFlag_UartIn:
-            Kernel_recv_msg(KernelMsgQ_Task0, &uartch, 1);
-            if (uartch == '\r') {
-                cmdBuf[cmdBufIdx] = '\0';
+            case KernelEventFlag_UartIn:
+                Kernel_recv_msg(KernelMsgQ_Task0, &uartch, 1);
+                if (uartch == '\r') {
+                    cmdBuf[cmdBufIdx] = '\0';
 
-                while (true) {
-                    Kernel_send_events(KernelEventFlag_CmdIn);
-                    if (false == Kernel_send_msg(KernelMsgQ_Task1, &cmdBufIdx, 1)) {
-                        Kernel_yield();
+                    while (true) {
+                        Kernel_send_events(KernelEventFlag_CmdIn);
+                        if (false == Kernel_send_msg(KernelMsgQ_Task1, &cmdBufIdx, 1)) {
+                            Kernel_yield();
+                        }
+                        else if (false == Kernel_send_msg(KernelMsgQ_Task1, cmdBuf, cmdBufIdx)) {
+                            uint8_t rollback;
+                            Kernel_recv_msg(KernelMsgQ_Task1, &rollback, 1);
+                            Kernel_yield();
+                        }
+                        else {
+                            break;
+                        }
                     }
-                    else if (false == Kernel_send_msg(KernelMsgQ_Task1, cmdBuf, cmdBufIdx)) {
-                        uint8_t rollback;
-                        Kernel_recv_msg(KernelMsgQ_Task1, &rollback, 1);
-                        Kernel_yield();
-                    }
-                    else {
-                        break;
-                    }
+                    cmdBufIdx = 0;
                 }
-                cmdBufIdx = 0;
-            }
-            else {
-                cmdBuf[cmdBufIdx] = uartch;
-                cmdBufIdx++;
-                cmdBufIdx %= 16;
-            }
-            break;
-        case KernelEventFlag_CmdOut:
-            debug_printf("\nCmdOut handeld by Task0\n");
-            break;
+                else {
+                    cmdBuf[cmdBufIdx] = uartch;
+                    cmdBufIdx++;
+                    cmdBufIdx %= 16;
+                }
+                break;
+            case KernelEventFlag_CmdOut:
+                debug_printf("\nCmdOut handeld by Task0\n");
+                break;
+        }
         Kernel_yield();
     }
 }
@@ -107,9 +108,8 @@ void User_task1 (void) {
 
 void User_task2 (void) {
     uint32_t local = 0;
+    debug_printf("User Task #2 SP=0x%x\n",&local);
     while (true) {
-        debug_printf("User Task #2 SP=0x%x\n",&local);
-        delay(3000);
         Kernel_yield();
     }
 }

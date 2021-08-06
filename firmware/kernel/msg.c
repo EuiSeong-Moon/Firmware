@@ -10,7 +10,7 @@ void Kernel_msgQ_init(void) {
 	for (uint32_t i = 0; i < KernelMsgQ_Num; i++) {
 		sMsgQ[i].front = 0;
 		sMsgQ[i].rear = 0;
-		memclr(sMsgQ[i].Queue, Msg_Q_SIZE_BYTE);
+		memclr(sMsgQ[i].Queue, MSG_Q_SIZE_BYTE);
 	}
 }
 
@@ -44,7 +44,7 @@ bool Kernel_msgQ_enqueue(KernelMsgQ_t Qname, uint8_t data) {
 		return false;
 	}
 	sMsgQ[Qname].rear++;
-	sMsgQ[Qname].rear %= MSG_Q_SIZE_BYTE:
+	sMsgQ[Qname].rear %= MSG_Q_SIZE_BYTE;
 
 	uint32_t idx = sMsgQ[Qname].rear;
 	sMsgQ[Qname].Queue[idx] = data;
