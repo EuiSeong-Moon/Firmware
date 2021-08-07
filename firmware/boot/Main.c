@@ -11,6 +11,16 @@ static void HW_init (void);
 static void Printf_test (void);
 static void Timer_test(void);
 
+static uint32_t shared_value;
+
+static void Test_critical_section(uint32_t p,uint32_t taskId) {
+    debug_printf("User Task #%u Send=%u\n",taskId,p);
+    shared_value = p;
+    Kernel_yield();
+    delay(1000);
+    debug_printf("User Task #%u Shared Value =%u\n",taskId,shared_value);
+}
+
 void User_task0(void);
 void User_task1(void);
 void User_task2(void);
