@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+#define TRUE       1
+#define FALSE      0
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -19,6 +23,7 @@ enum
  
     // Controls actuation of pull up/down for specific GPIO pin.
     GPPUDCLK0 = (GPIO_BASE + 0x98),
+    GPPUDCLK1    = (GPIO_BASE + 0x9C),
  
     // The base address for UART.
     UART0_BASE = (GPIO_BASE + 0x1000), // for raspi4 0xFE201000, raspi2 & 3 0x3F201000, and 0x20201000 for raspi1
@@ -75,8 +80,7 @@ enum
     GPAREN0      = (GPIO_BASE + 0x7C),
     GPAREN1      = (GPIO_BASE + 0x80),
     GPAFEN0      = (GPIO_BASE + 0x88),
-    GPAFEN1      = (GPIO_BASE + 0x8C),
-    GPPUDCLK1    = (GPIO_BASE + 0x9C)
+    GPAFEN1      = (GPIO_BASE + 0x8C)
 };
 
 // The MMIO area base address, depends on board type
