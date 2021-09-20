@@ -15,8 +15,9 @@ static uint32_t MMIO_BASE;
 
 enum
 {
-    // The offsets for reach register.
-    GPIO_BASE = 0x200000,
+	// The offsets for reach register.
+	GPIO_BASE      = 0x200000,
+	IRQ_BASE = 0xB000;
  
     // Controls actuation of pull up/down to ALL GPIO pins.
     GPPUD = (GPIO_BASE + 0x94),
@@ -80,7 +81,19 @@ enum
     GPAREN0      = (GPIO_BASE + 0x7C),
     GPAREN1      = (GPIO_BASE + 0x80),
     GPAFEN0      = (GPIO_BASE + 0x88),
-    GPAFEN1      = (GPIO_BASE + 0x8C)
+    GPAFEN1      = (GPIO_BASE + 0x8C),
+
+	//INTERRUPT
+	IRQ_PENDING_BASIC = (IRQ_BASE + 0x200),
+	IRQ_PENDING1      = (IRQ_BASE + 0x204),
+	IRQ_PENDING2      = (IRQ_BASE + 0x208),
+	FIQ_CONTROL       = (IRQ_BASE + 0x20C),
+	IRQ_ENABLE1       = (IRQ_BASE + 0x210),
+	IRQ_ENABLE2       = (IRQ_BASE + 0x214),
+	IRQ_ENABLE_BASIC  = (IRQ_BASE + 0x218),
+	IRQ_DISABLE1      = (IRQ_BASE + 0x21C),
+	IRQ_DISABLE2      = (IRQ_BASE + 0x220),
+	IRQ_DISABLE_BASIC = (IRQ_BASE + 0x224)
 };
 
 // The MMIO area base address, depends on board type
