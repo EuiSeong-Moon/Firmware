@@ -16,15 +16,17 @@ void kernel_main(uint64_t dtb_ptr32, uint64_t x1, uint64_t x2, uint64_t x3)
 void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 #endif
 {
-	// initialize UART for Raspi2
-	uart_init(3);
-	uart_puts("Hello, kernel World!\r\n");
+	// initialize UART for Raspi3
+	//uart_init(3);
+	//uart_puts("Hello, kernel World!\r\n");
 	GPIO_Init();
+	//GPIO_Select(2,GPIO_MODE_OUTPUT);
+	//GPIO_Set(2);
 	//mmio_write(GPFSEL0,0x11);
 	//gpio_clear();
  
-	while (1) {
-		uart_putc(uart_getc());
-	}
+	// while (1) {
+	// 	uart_putc(uart_getc());
+	// }
 }
 

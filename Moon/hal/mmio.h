@@ -15,19 +15,18 @@ static uint32_t MMIO_BASE;
 
 enum
 {
-	// The offsets for reach register.
-	GPIO_BASE      = 0x200000,
-	IRQ_BASE = 0xB000;
- 
-    // Controls actuation of pull up/down to ALL GPIO pins.
-    GPPUD = (GPIO_BASE + 0x94),
- 
-    // Controls actuation of pull up/down for specific GPIO pin.
-    GPPUDCLK0 = (GPIO_BASE + 0x98),
-    GPPUDCLK1    = (GPIO_BASE + 0x9C),
+    ERROR = -1,
+    SUCCESS = 0,
+
+    // Pulse value
+    HIGH = 1,
+    LOW = 0,
+
+    // The offsets for reach register.
+    IRQ_BASE = 0xB000,
  
     // The base address for UART.
-    UART0_BASE = (GPIO_BASE + 0x1000), // for raspi4 0xFE201000, raspi2 & 3 0x3F201000, and 0x20201000 for raspi1
+    UART0_BASE = (0x200000 + 0x1000), // for raspi4 0xFE201000, raspi2 & 3 0x3F201000, and 0x20201000 for raspi1
  
     // The offsets for reach register for the UART.
     UART0_DR     = (UART0_BASE + 0x00),
@@ -55,33 +54,6 @@ enum
     MBOX_STATUS  = (MBOX_BASE + 0x18),
     MBOX_WRITE   = (MBOX_BASE + 0x20),
 
-    //GPIO
-    GPFSEL0      = (GPIO_BASE + 0x00),
-    GPFSEL1      = (GPIO_BASE + 0x04),
-    GPFSEL2      = (GPIO_BASE + 0x08),
-    GPFSEL3      = (GPIO_BASE + 0x0C),
-    GPFSEL4      = (GPIO_BASE + 0x10),
-    GPFSEL5      = (GPIO_BASE + 0x14),
-    GPSET0       = (GPIO_BASE + 0x1C),
-    GPSET1       = (GPIO_BASE + 0x20),
-    GPCLR0       = (GPIO_BASE + 0x28),
-    GPCLR1       = (GPIO_BASE + 0x2C),
-    GPLEV0       = (GPIO_BASE + 0x34),
-    GPLEV1       = (GPIO_BASE + 0x38),
-    GPEDS0       = (GPIO_BASE + 0x40),
-    GPEDS1       = (GPIO_BASE + 0x44),
-    GPREN0       = (GPIO_BASE + 0x4C),
-    GPREN1       = (GPIO_BASE + 0x50),
-    GPFEN0       = (GPIO_BASE + 0x58),
-    GPFEN1       = (GPIO_BASE + 0x5C),
-    GPHEN0       = (GPIO_BASE + 0x64),
-    GPHEN1       = (GPIO_BASE + 0x68),
-    GPLEN0       = (GPIO_BASE + 0x70),
-    GPLEN1       = (GPIO_BASE + 0x74),
-    GPAREN0      = (GPIO_BASE + 0x7C),
-    GPAREN1      = (GPIO_BASE + 0x80),
-    GPAFEN0      = (GPIO_BASE + 0x88),
-    GPAFEN1      = (GPIO_BASE + 0x8C),
 
 	//INTERRUPT
 	IRQ_PENDING_BASIC = (IRQ_BASE + 0x200),

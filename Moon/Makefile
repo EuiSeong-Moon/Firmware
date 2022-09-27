@@ -1,6 +1,6 @@
-AS = /home/moon/Desktop/aarch64-elf-7.5.0-Linux-x86_64/bin/aarch64-elf-as
-CC = /home/moon/Desktop/aarch64-elf-7.5.0-Linux-x86_64/bin/aarch64-elf-gcc
-OJ = /home/moon/Desktop/aarch64-elf-7.5.0-Linux-x86_64/bin/aarch64-elf-objcopy
+AS = /home/moon/library/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-as
+CC = /home/moon/library/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
+OJ = /home/moon/library/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-objcopy
 
 MODEL = raspi3
 LINKER_SCRIPT = ./moonos.ld
